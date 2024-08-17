@@ -38,8 +38,14 @@ export default function Facility(props: any) {
 	const [isFadeIn, setIsFadeIn] = useState(true);
 	return (
 		<section className="facility-section">
-			<div className="left-title">공장 및 목재창고</div>
-			<div
+			{/* <div className="left-title">공장 및 목재창고</div> */}
+			<div className="title-area">
+        		<p className="title">공장 및 목재창고</p>
+      		</div>
+			<div className='row'>
+				<div className='col-4'></div>
+			</div>
+			{/* <div
 				className={`main-banner banner${currentBanner} ${
 					isFadeIn ? 'opacity-1' : 'opacity-0'
 				}`}
@@ -98,7 +104,7 @@ export default function Facility(props: any) {
 						)}
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</section>
 	);
 }
