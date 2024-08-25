@@ -1,48 +1,49 @@
-import { deckClip } from "data/deckClip";
-import { fetchSSRModule } from "modules/front/FetchModule";
-import { GetServerSideProps } from "next";
+import { deckClip } from 'data/deckClip';
+import { fetchSSRModule } from 'modules/front/FetchModule';
+import { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  let queryData = context.query;
-let apiUrl = `${process.env.SERVER_HOST_URL}/api/house`;
-const apiData = await fetchSSRModule(
-  context,
-  {
-    url: apiUrl,
-    method: 'GET',
-  },
-  false,
-);
+	let queryData = context.query;
+	let apiUrl = `${process.env.SERVER_HOST_URL}/api/house`;
+	const apiData = await fetchSSRModule(
+		context,
+		{
+			url: apiUrl,
+			method: 'GET',
+		},
+		false,
+	);
 
-if (apiData.isError == true) {
-  return apiData.data;
-}
-let props: any = apiData.data;
-if (typeof apiData.metaInfo != 'undefined') {
-  props.metaInfo = apiData.metaInfo;
-}
-return {
-  props
-};
+	if (apiData.isError == true) {
+		return apiData.data;
+	}
+	let props: any = apiData.data;
+	if (typeof apiData.metaInfo != 'undefined') {
+		props.metaInfo = apiData.metaInfo;
+	}
+	return {
+		props,
+	};
 };
 
-export default function House(props:any) {
-  return (
-    <section className="house-section">
-      <div className="title-area">
-        <p className="title">주춧돌</p>
-      </div>
-      <div className="text-center mt-2">
-        목조 주택 건축用 앵커를 연구개발하여 건축현장에서 필요한 건축물 수명과 안전을 위한 제품들을 생산합니다.
-      </div>
-      <div
+export default function House(props: any) {
+	return (
+		<section className="house-section">
+			<div className="title-area">
+				<p className="title">주춧돌</p>
+			</div>
+			<div className="text-center mt-2">
+				목조 주택 건축用 앵커를 연구개발하여 건축현장에서 필요한 건축물 수명과
+				안전을 위한 제품들을 생산합니다.
+			</div>
+			<div
 				className="image"
 				style={{
-					backgroundImage: `url(${props.intro[0].url})`,
+					backgroundImage: `url(${props.intro[1].url})`,
 				}}
 			></div>
-      {/* <div className="sub-title">history</div> */}
-      {/* <div className="image" style={{
+			{/* <div className="sub-title">history</div> */}
+			{/* <div className="image" style={{
                           backgroundImage: `url(${props.intro[0].url})`,
                         }}></div>
       <p className="text-center">비엘텍크라스노의 데크 제품을 소개합니다.</p>
@@ -112,6 +113,6 @@ export default function House(props:any) {
           );
         })}
       </div> */}
-    </section>
-  )
+		</section>
+	);
 }

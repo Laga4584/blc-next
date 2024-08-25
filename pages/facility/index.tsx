@@ -36,14 +36,41 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export default function Facility(props: any) {
 	const [currentBanner, setCurrentBanner] = useState<number>(1);
 	const [isFadeIn, setIsFadeIn] = useState(true);
+	let dividedImageData: any[][] = [];
+	props.images.forEach((imageDatum: any, imageDatumIndex: number) => {
+		if (imageDatumIndex % 3 == 0) {
+			dividedImageData.push([]);
+		}
+		dividedImageData[Math.floor(imageDatumIndex / 3)].push(imageDatum);
+	});
 	return (
 		<section className="facility-section">
 			{/* <div className="left-title">공장 및 목재창고</div> */}
 			<div className="title-area">
-        		<p className="title">공장 및 목재창고</p>
-      		</div>
-			<div className='row'>
-				<div className='col-4'></div>
+				<p className="title">공장 및 목재창고</p>
+			</div>
+			{dividedImageData.map(
+				(dividedImageDatum: any[], dividedImageDatumIndex: number) => {
+					return (
+						<div className="row" key={`row-${dividedImageDatumIndex}`}>
+							{dividedImageDatum.map((image: any, imageIndex: number) => {
+								return (
+									<div
+										className="item-image col col-4"
+										style={{
+											backgroundImage: `url(${image.url})`,
+										}}
+										key={`facility-image-${imageIndex}`}
+									></div>
+								);
+							})}
+						</div>
+					);
+				},
+			)}
+
+			<div className="row">
+				<div className="col col-4"></div>
 			</div>
 			{/* <div
 				className={`main-banner banner${currentBanner} ${
