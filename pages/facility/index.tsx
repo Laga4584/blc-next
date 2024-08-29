@@ -56,12 +56,17 @@ export default function Facility(props: any) {
 							{dividedImageDatum.map((image: any, imageIndex: number) => {
 								return (
 									<div
-										className="item-image col col-4"
-										style={{
-											backgroundImage: `url(${image.url})`,
-										}}
+										className="col col-4"
 										key={`facility-image-${imageIndex}`}
-									></div>
+									>
+										<div
+											className="item-image"
+											style={{
+												backgroundImage: `url(${image.url})`,
+											}}
+											key={`facility-image-${imageIndex}`}
+										></div>
+									</div>
 								);
 							})}
 						</div>
